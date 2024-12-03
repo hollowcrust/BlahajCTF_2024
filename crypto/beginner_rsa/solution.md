@@ -21,7 +21,7 @@ hint = -457982026709348810903411505140487931807810074128707325900733495545507704
 """
 ```
 
-<br/>We are given an RSA encryption algorithm code snippet as above. To decrypt the message we need to find `p` and `q`. We can rewrite `hint = p - q` as `p = q + hint` and substitute in `n = p * q` to get `q * (q + hint) = n`, a quadratic equation in `q`. We can solve this equation using the standard formula or let Sage do it for you.<br/>
+<br/>We are given an RSA encryption algorithm code snippet as above. To decrypt the message we need to find $p$ and $q$. We can rewrite $hint = p - q$ as $p = q + hint$ and substitute in $n = p * q$ to get $q * (q + hint) = n$, a quadratic equation in $q$. We can solve this equation using the standard formula or let Sage do it for you.<br/>
 
 ```Sage
 n = 108101794838326543108895442568320595213435883352002970605393215931233377913234347860817207449734048854796921695401675819470608413896222201875034392774928170985401124602439808330499968640189486285009153051676697766845783397421232061096432544048255406387837608882706490251778496052040229361828035076446882520699
@@ -32,7 +32,7 @@ solve([x**2 + hint*x - n == 0], x)
 ```Sage
 [x == 10420125616477306703464911499436119516592074278384331960862146209614711130849180309579775409800535111782897815370320126919480081521267649925152853274087437, x == -10374327413806371822374570348922070723411293270971461228272072860060160360360838529206700242938117910030551958619563223126777920177025207707392976627842727]
 ```
-<br/>We get the following solutions for q, and we take the positive root for `q`. We then calculate `p = n // q` and proceed to decrypt the message.
+<br/>We get the following solutions for q, and we take the positive root for $q$. We then calculate $p = \lfloor n / q \rfloor$ and proceed to decrypt the message.
 
 ```Python3
 from Crypto.Util.number import bytes_to_long, long_to_bytes
